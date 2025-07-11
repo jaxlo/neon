@@ -42,6 +42,7 @@ void GenerateBuildings(World *world) {
             
             world->buildings[world->buildingCount] = building;
             world->buildingCount++;
+
         }
     }
 }

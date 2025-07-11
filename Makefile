@@ -6,7 +6,7 @@ LIBS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 # Source files
 SOURCES = src/main.c \
     src/player/*.c \
-    src/shaders/*.c \
+    src/renderer/*.c \
 	src/world/*.c \
 
 # Output
