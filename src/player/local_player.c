@@ -1,8 +1,7 @@
 #include "player.h"
 #include <raylib.h>
 
-Player InitPlayer(void)
-{
+Player InitPlayer(void) {
     Player player = {0};
     
     // Initialize player position
@@ -33,8 +32,7 @@ Player InitPlayer(void)
     return player;
 }
 
-void UpdatePlayer(Player *player)
-{
+void UpdatePlayer(Player *player) {
     HandleInput(player);
     
     // Apply gravity

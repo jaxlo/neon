@@ -6,8 +6,7 @@ Shader basicShader = {0};
 int timeUniform = 0;
 int resolutionUniform = 0;
 
-void InitShaders(void)
-{
+void InitShaders(void) {
     // For now, we'll just initialize without loading custom shaders
     // In a more complex project, you would load vertex and fragment shaders here
     
@@ -19,8 +18,7 @@ void InitShaders(void)
     // For this basic example, we'll use default rendering
 }
 
-void UnloadShaders(void)
-{
+void UnloadShaders(void) {
     // Unload any custom shaders if they were loaded
     // if (basicShader.id != 0) {
     //     UnloadShader(basicShader);

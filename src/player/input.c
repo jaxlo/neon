@@ -2,8 +2,7 @@
 #include <raylib.h>
 #include <raymath.h>
 
-void HandleInput(Player *player)
-{
+void HandleInput(Player *player) {
     // Get mouse delta with sensitivity
     Vector2 mouseDelta = GetMouseDelta();
     float mouseSensitivity = 0.002f; // Reduced sensitivity for smoother movement

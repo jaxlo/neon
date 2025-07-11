@@ -2,8 +2,7 @@
 #include <raylib.h>
 #include <raymath.h>
 
-void UpdatePlayerCamera(Player *player)
-{
+void UpdatePlayerCamera(Player *player) {
     // Calculate camera target based on pitch and yaw
     Vector3 target = {
         player->position.x + cosf(player->yaw),

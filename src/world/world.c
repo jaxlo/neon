@@ -3,8 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-World InitWorld(void)
-{
+World InitWorld(void) {
     World world = {0};
     
     // Initialize random seed
@@ -16,8 +15,7 @@ World InitWorld(void)
     return world;
 }
 
-void GenerateBuildings(World *world)
-{
+void GenerateBuildings(World *world) {
     world->buildingCount = 0;
     
     // Create a simple city grid
@@ -48,8 +46,7 @@ void GenerateBuildings(World *world)
     }
 }
 
-void DrawWorld(World *world)
-{
+void DrawWorld(World *world) {
     // Draw ground plane
     DrawPlane((Vector3){0, 0, 0}, (Vector2){100, 100}, DARKGRAY);
     
@@ -71,7 +68,6 @@ void DrawWorld(World *world)
     DrawGrid(20, 2.0f);
 }
 
-void UnloadWorld(World *world)
-{
+void UnloadWorld(World *world) {
     // Nothing to unload for now since we're using primitive shapes
 }

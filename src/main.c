@@ -4,14 +4,11 @@
 #include <raylib.h>
 
 
-int main(void)
-{
-    // Initialization
+int main(void) {
+    // Make a window
     const int screenWidth = 640;
     const int screenHeight = 480;
-
     InitWindow(screenWidth, screenHeight, "neon");
-
     // jump to fullscreen for now
     ToggleFullscreen();
 
@@ -20,28 +17,27 @@ int main(void)
     World world = InitWorld();
     InitShaders();
 
-    SetTargetFPS(60);
+    SetTargetFPS(200);
+
 
     // Main game loop
-    while (!WindowShouldClose())
-    {
-        // Update
+    while (!WindowShouldClose()) {
+        // Update --- --- ---
         UpdatePlayer(&player);
+        // End update --- --- ---
         
-        // Draw
+        // Draw --- --- ---
         BeginDrawing();
-        
-            ClearBackground(SKYBLUE);
-            
-            BeginMode3D(player.camera);
-            
-                DrawWorld(&world);
-                
-            EndMode3D();
-            
-            // Draw UI
-            DrawFPS(10, 10);
-            
+        ClearBackground(DARKBLUE);
+
+        BeginMode3D(player.camera);
+        DrawWorld(&world);
+        EndMode3D();
+
+        // Draw UI
+        DrawFPS(10, 10);
+
+        // End draw --- --- ---
         EndDrawing();
     }
 
