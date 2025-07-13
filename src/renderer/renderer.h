@@ -16,6 +16,7 @@ typedef struct {
 typedef struct {
     RendererConfig config;
     RenderTexture2D renderTexture;
+    Shader raytraceShader;
     Shader lightingShader;
     Shader shadowShader;
     Shader ditherShader;
@@ -32,7 +33,6 @@ void BeginRenderFrame(void);
 void EndRenderFrame(void);
 void BeginScene3D(Camera3D camera);
 void EndScene3D(void);
-void DrawUI(void);
 bool IsRendererInitialized(void);
 
 // Utility functions

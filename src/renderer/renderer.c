@@ -10,7 +10,7 @@ void InitRenderer(int screenWidth, int screenHeight, float scaleFactor) {
         printf("Warning: Renderer already initialized!\n");
         return;
     }
-    
+
     // Setup configuration
     g_renderer.config.screenWidth = screenWidth;
     g_renderer.config.screenHeight = screenHeight;
@@ -21,31 +21,38 @@ void InitRenderer(int screenWidth, int screenHeight, float scaleFactor) {
     // Create render texture at scaled resolution
     g_renderer.renderTexture = LoadRenderTexture(g_renderer.config.renderWidth, g_renderer.config.renderHeight);
     
-    // Load shaders
-    g_renderer.lightingShader = LoadShader(0, "shaders/lighting.fs");
-    g_renderer.shadowShader = LoadShader(0, "shaders/shadows.fs");
-    g_renderer.ditherShader = LoadShader(0, "shaders/dither.fs");
+    // Compute shaders
+    //g_renderer.raytraceShader = LoadComputeShader("raytracer.comp");
+
+    // regular shaders
+    g_renderer.lightingShader = LoadShader(0, "shaders/lighting.fs"); // Shader not implemented yet
+    g_renderer.shadowShader = LoadShader(0, "shaders/shadows.fs"); // Shader not implemented yet
+    g_renderer.ditherShader = LoadShader(0, "assets/shaders/dither.fs"); // Shader not implemented yet
     
     // Set shader uniforms
     float resolution[2] = {(float)g_renderer.config.screenWidth, (float)g_renderer.config.screenHeight};
     SetShaderValue(g_renderer.ditherShader, GetShaderLocation(g_renderer.ditherShader, "resolution"), resolution, SHADER_UNIFORM_VEC2);
-    
+
     g_renderer.initialized = true;
-    
+
     printf("Renderer initialized: %dx%d -> %dx%d (scale: %.2f)\n", 
-           g_renderer.config.renderWidth, g_renderer.config.renderHeight,
-           g_renderer.config.screenWidth, g_renderer.config.screenHeight,
-           g_renderer.config.scaleFactor);
+        g_renderer.config.renderWidth,
+        g_renderer.config.renderHeight,
+        g_renderer.config.screenWidth,
+        g_renderer.config.screenHeight,
+        g_renderer.config.scaleFactor
+    );
 }
 
 void CleanupRenderer(void) {
     if (!g_renderer.initialized) return;
     
     UnloadRenderTexture(g_renderer.renderTexture);
+    UnloadShader(g_renderer.raytraceShader);
     UnloadShader(g_renderer.lightingShader);
     UnloadShader(g_renderer.shadowShader);
     UnloadShader(g_renderer.ditherShader);
-    
+
     g_renderer.initialized = false;
     printf("Renderer cleanup complete\n");
 }
@@ -78,8 +85,7 @@ void EndRenderFrame(void) {
     Rectangle sourceRec = {0, 0, (float)g_renderer.config.renderWidth, -(float)g_renderer.config.renderHeight}; // Flip Y
     Rectangle destRec = {0, 0, (float)g_renderer.config.screenWidth, (float)g_renderer.config.screenHeight};
     
-    DrawTexturePro(g_renderer.renderTexture.texture, sourceRec, destRec, 
-                   (Vector2){0, 0}, 0.0f, WHITE);
+    DrawTexturePro(g_renderer.renderTexture.texture, sourceRec, destRec, (Vector2){0, 0}, 0.0f, WHITE);
     
     EndShaderMode();
 }
@@ -100,25 +106,16 @@ void EndScene3D(void) {
     EndMode3D();
 }
 
-void DrawUI(void) {
-    if (!g_renderer.initialized) return;
-    
-    // UI is drawn after EndRenderFrame() but before EndDrawing()
-    // This ensures UI is rendered at full resolution
-}
-
 bool IsRendererInitialized(void) {
     return g_renderer.initialized;
 }
 
 Vector2 GetRenderResolution(void) {
-    return (Vector2){(float)g_renderer.config.renderWidth, 
-                    (float)g_renderer.config.renderHeight};
+    return (Vector2){(float)g_renderer.config.renderWidth, (float)g_renderer.config.renderHeight};
 }
 
 Vector2 GetScreenResolution(void) {
-    return (Vector2){(float)g_renderer.config.screenWidth, 
-                    (float)g_renderer.config.screenHeight};
+    return (Vector2){(float)g_renderer.config.screenWidth, (float)g_renderer.config.screenHeight};
 }
 
 float GetRenderScale(void) {

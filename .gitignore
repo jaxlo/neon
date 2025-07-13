@@ -57,3 +57,7 @@ dkms.conf
 
 # Compiled files
 /build
+
+
+# Other
+z_demo

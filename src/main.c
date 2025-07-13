@@ -1,28 +1,19 @@
 #include "player/player.h"
 #include "world/world.h"
 #include "renderer/renderer.h"
+#include "ui/ui.h"
 #include <raylib.h>
 #include <stdio.h>
 
 
 int main(void) {
-    // Make a window half the size of 1920x1080 to start
-    InitWindow(960, 540, "neon");
-
-    // Get monitor size for fullscreen
-    int monitorWidth = GetMonitorWidth(0);
-    int monitorHeight = GetMonitorHeight(0);
-    
-    // Render at half resolution
-    int renderWidth = monitorWidth / 2;
-    int renderHeight = monitorHeight / 2;
-    printf("DEV: Render resolution: %dx%d\n", renderWidth, renderHeight);
+    InitWindow(GetMonitorWidth(0), GetMonitorHeight(0), "neon");
     
     // Enable fullscreen
     SetWindowState(FLAG_FULLSCREEN_MODE);
 
     // Initialize renderer (0.5 = half resolution)
-    InitRenderer(GetScreenWidth(), GetScreenHeight(), 0.5f);
+    InitRenderer(GetScreenWidth(), GetScreenHeight(), 1.0);
 
     // Initialize everything
     Player player = InitPlayer();
@@ -43,11 +34,20 @@ int main(void) {
         BeginScene3D(player.camera);
         DrawWorld(&world);
         EndScene3D();
+
+        // New renderer
+        // Custom compute-style rendering approach for the ray traced scene (Built on top of rlgl)
+        // BeginDrawing();
+        //     BeginShaderMode(raytracingShader);
+        //         // Draw a fullscreen quad to trigger your fragment shader
+        //         DrawRectangle(0, 0, screenWidth, screenHeight, WHITE);
+        //     EndShaderMode();
+        // EndDrawing();
         
         EndRenderFrame();
         
         // Draw UI at full resolution
-        DrawFPS(10, 10);
+        DrawUI();
         
         EndDrawing();
         // End draw --- --- ---

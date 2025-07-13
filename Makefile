@@ -8,6 +8,7 @@ SOURCES = src/main.c \
     src/player/*.c \
     src/renderer/*.c \
 	src/world/*.c \
+	src/ui/*ui.c
 
 # Output
 TARGET = a.out
