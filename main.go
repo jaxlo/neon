@@ -30,13 +30,13 @@ func main() {
 	monitor := glfw.GetPrimaryMonitor()
 	mode := monitor.GetVideoMode()
 
-	window, err := glfw.CreateWindow(mode.Width, mode.Height, "GPU Raytracer", monitor, nil)
+	window, err := glfw.CreateWindow(mode.Width, mode.Height, "neon", monitor, nil)
 	if err != nil {
 		log.Fatalln("failed to create window:", err)
 	}
 
 	window.MakeContextCurrent()
-	glfw.SwapInterval(0) // Disable V-Sync to see actual performance
+	glfw.SwapInterval(0) // Disable V-Sync
 
 	if err := gl.Init(); err != nil {
 		log.Fatalln("failed to initialize OpenGL:", err)

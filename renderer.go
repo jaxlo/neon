@@ -5,31 +5,6 @@ import (
 	"github.com/go-gl/gl/v4.3-core/gl"
 )
 
-var (
-	// Vertex shader for fullscreen quad
-	vertexShader = `#version 430 core
-layout (location = 0) in vec3 aPos;
-layout (location = 1) in vec2 aTexCoord;
-
-out vec2 TexCoord;
-
-void main() {
-    gl_Position = vec4(aPos, 1.0);
-    TexCoord = aTexCoord;
-}` + "\x00"
-
-	// Fragment shader for displaying the raytraced image
-	fragmentShader = `#version 430 core
-in vec2 TexCoord;
-out vec4 FragColor;
-
-uniform sampler2D screenTexture;
-
-void main() {
-    FragColor = texture(screenTexture, TexCoord);
-}` + "\x00"
-)
-
 type Renderer struct {
 	shaderProgram uint32
 	VAO           uint32
@@ -44,12 +19,23 @@ func NewRenderer() *Renderer {
 }
 
 func (r *Renderer) init() {
+	// Load shaders from external files
+	vertexSource, err := loadShaderFile("assets/shaders/vertex.glsl")
+	if err != nil {
+		panic(err)
+	}
+
+	fragmentSource, err := loadShaderFile("assets/shaders/fragment.glsl")
+	if err != nil {
+		panic(err)
+	}
+
 	// Create shader program
-	r.shaderProgram = createShaderProgram(vertexShader, fragmentShader)
+	r.shaderProgram = createShaderProgram(vertexSource, fragmentSource)
 
 	// Create fullscreen quad
 	vertices := []float32{
-		// positions   // texture coords
+		// positions    // texture coords
 		-1.0, -1.0, 0.0, 0.0, 0.0,
 		1.0, -1.0, 0.0, 1.0, 0.0,
 		1.0, 1.0, 0.0, 1.0, 1.0,

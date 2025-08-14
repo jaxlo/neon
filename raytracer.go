@@ -65,14 +65,10 @@ func (r *Raytracer) Render() {
 	// Set uniforms and dispatch compute shader
 	gl.UseProgram(r.computeProgram)
 	gl.Uniform1f(gl.GetUniformLocation(r.computeProgram, gl.Str("uTime\x00")), time)
-	gl.Uniform3f(gl.GetUniformLocation(r.computeProgram, gl.Str("uCameraPos\x00")),
-		cameraPos.X(), cameraPos.Y(), cameraPos.Z())
-	gl.Uniform3f(gl.GetUniformLocation(r.computeProgram, gl.Str("uCameraDir\x00")),
-		cameraDir.X(), cameraDir.Y(), cameraDir.Z())
-	gl.Uniform3f(gl.GetUniformLocation(r.computeProgram, gl.Str("uCameraUp\x00")),
-		cameraUp.X(), cameraUp.Y(), cameraUp.Z())
-	gl.Uniform3f(gl.GetUniformLocation(r.computeProgram, gl.Str("uCameraRight\x00")),
-		cameraRight.X(), cameraRight.Y(), cameraRight.Z())
+	gl.Uniform3f(gl.GetUniformLocation(r.computeProgram, gl.Str("uCameraPos\x00")), cameraPos.X(), cameraPos.Y(), cameraPos.Z())
+	gl.Uniform3f(gl.GetUniformLocation(r.computeProgram, gl.Str("uCameraDir\x00")), cameraDir.X(), cameraDir.Y(), cameraDir.Z())
+	gl.Uniform3f(gl.GetUniformLocation(r.computeProgram, gl.Str("uCameraUp\x00")), cameraUp.X(), cameraUp.Y(), cameraUp.Z())
+	gl.Uniform3f(gl.GetUniformLocation(r.computeProgram, gl.Str("uCameraRight\x00")), cameraRight.X(), cameraRight.Y(), cameraRight.Z())
 
 	gl.DispatchCompute(width/16, height/16, 1)
 	gl.MemoryBarrier(gl.SHADER_IMAGE_ACCESS_BARRIER_BIT)
