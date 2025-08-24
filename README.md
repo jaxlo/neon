@@ -1,5 +1,5 @@
 # neon
-A raytraced game built with C++ and Vulkan
+A raytraced social game built with C++ and Vulkan
 
 Dependencies
 - Vulkan

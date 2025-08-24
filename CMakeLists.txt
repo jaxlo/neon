@@ -22,8 +22,17 @@ add_custom_target(run
 )
 
 
+# Find packages
+find_package(SDL3 REQUIRED)
+find_package(Vulkan REQUIRED)
+find_package(ftxui REQUIRED)
+
+
 # Link libraries
 target_link_libraries(${PROJECT_NAME} 
-    SDL3::SDL3
+    SDL3
     Vulkan::Vulkan
+    ftxui::screen
+    ftxui::dom
+    ftxui::component
 )
