@@ -8,15 +8,17 @@ Dependencies
 
 
 ## Runing neon
-´´mkdir build´´
-´´cd build´´
+``sudo dnf install SDL3 ftxui``
+
+``mkdir build``
+``cd build``
 
 ### Generate build files
-´´cmake ..´´
+``cmake ..``
 
 ### Compile the project
-´´make´´
+``make``
 
 Or on Windows with Visual Studio: 
 
-´´cmake --build .´´
+``cmake --build .``

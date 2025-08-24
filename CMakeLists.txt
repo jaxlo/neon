@@ -21,4 +21,9 @@ add_custom_target(run
     COMMENT "Running neon executable"
 )
 
-# How does this file work?? How can I compile, run and cleanup my code?
+
+# Link libraries
+target_link_libraries(${PROJECT_NAME} 
+    SDL3::SDL3
+    Vulkan::Vulkan
+)
