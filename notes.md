@@ -1,41 +1,31 @@
 # Development notes
+Previous attempts
+- Raylib. But it does not support true Ray tracing
+- Go-gl with compute shaders for Ray tracing. Too complicated for the absolute minimum with little documentation.
 
+This latest iteration uses Vulkan and modern C++.
+So this has lots of examples, docs and tooling because this is the industry standard way to build an engine/renderer.
+And it's possible to use RT cores! (RT cores will be required to run the game)
 
-## ToDO Next
-Make the object system extensible 
 
 
 ## Organization
 
-Put the engine in a go module? With it's own go modules? lol
-Or only make one layer of modules for modularity
-
-scene.go - for scene management and object definitions
-objects.go - for renderable object definitions
-camera.go - for camera-related functionality
-materials.go - for material definitions
-lights.go - for lighting setup
 
 
 
-## OpenGL notes
-OpenGL 4.3 is used because it is new enough to support compute shaders and old enough to support hardware going back to around 2012.
-It's also well supported by https://github.com/go-gl and has lots of documentation/examples online.
 
-File extensions:
-.glsl - Generic "OpenGL Shading Language" file
-.fs - Fragment Shader
-.vs - Vertex Shader
-.comp - Compute Shader
+## Startup notes
+Settings to have in the TUI:
+- Refresh Rate
+- Resolution
+- Borderless Windowed or Fullscreen
+- Monitor selection
+- V-Sync toggle
 
-V-sync - Have this as a setting somewhere?
-glfw.SwapInterval(1) - V-Sync enabled, capped at monitor refresh rate
-glfw.SwapInterval(0) - V-Sync disabled, uncapped framerate
+Get this info from SDL:
+Monitor list, resolutions (if possible with borderless), refresh rates
 
-
-## Raytracing
-Implemented via a compute shader.
-Only have 3 bounces and upscale from quarter resolution?
 
 
 ## Sound
@@ -72,8 +62,6 @@ BUT RGB565 might be worth it if there is more data to store
 
 ## Not cyberpunk. Neonpunk?
 Cyberpunk is neat but I'm drawn to neon asthenic of it more than anything else.
-Instead of chrome, violence and sexualization, I want the feeling of digital human connection.
+Instead of chrome, violence and sexualization, I want the feeling of optomism and human connection.
 
 Like Them Midnight's music. Their Wave song is a good example of this.
-
-Synthwave is too 80s lol
