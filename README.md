@@ -7,7 +7,16 @@ Dependencies
 - FTXUI
 
 
-## Development environment
+## Runing neon
+´´mkdir build´´
+´´cd build´´
 
-To run the code:
+### Generate build files
+´´cmake ..´´
 
+### Compile the project
+´´make´´
+
+Or on Windows with Visual Studio: 
+
+´´cmake --build .´´

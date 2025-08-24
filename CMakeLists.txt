@@ -15,10 +15,10 @@ add_executable(neon src/main.cpp)
 
 # Add a custom target to run the executable
 add_custom_target(run
-    COMMAND HelloWorld
-    DEPENDS HelloWorld
+    COMMAND neon
+    DEPENDS neon
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    COMMENT "Running HelloWorld executable"
+    COMMENT "Running neon executable"
 )
 
-# How does this file work??
+# How does this file work?? How can I compile, run and cleanup my code?
